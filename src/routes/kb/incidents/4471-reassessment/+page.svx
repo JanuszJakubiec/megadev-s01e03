@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 reassessed · two causes behind the date reports'
 owner: Janusz Jakubiec and Pi
-status: reviewed
+status: closed
 reviewed: '2026-11-01'
 signature: Janusz Jakubiec / Pi / S01E03
 ---
@@ -14,12 +14,22 @@ signature: Janusz Jakubiec / Pi / S01E03
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
+## Resolution · engineering update, 5 October 2026
+
+The course's Challenge page now reports **#4471 closed 05 Oct**:
+
+- **Parser — fixed:** `fix(dates): parse dd/mm for eu locales`. The parser ticket is closed as completed.
+- **Hint — won't fix:** booking-v3 form retired. The hint ticket is closed as not planned, not as a shipped hint fix.
+
+These outcomes come from the engineering update on the [Challenge page](https://hq.mega.dev/challenges/what-it-shows),
+not from production tests we ran. Counts below remain the export snapshot through 4 October.
+
 ## Decision for the desk
 
 Do not treat “known” as “one cause” or “resolved.” Split the merged date reports by tenant
-locale, booking-form version, and channel. The parser fix does not fix a misleading form hint.
+locale, booking-form version, and channel. The parser fix did not itself fix the misleading hint;
+retiring booking-v3 removed that form instead.
 This reassessment supersedes the one-cause conclusion in [the original incident](/kb/incidents/4471).
-It describes the supplied export through 4 October, not a live queue.
 
 <IncidentEvidence />
 
@@ -54,9 +64,11 @@ them twice or invent a confirmed timezone bug. Preserve their IDs for follow-up 
 <QueueTimeline ticket={4471} />
 
 The received and merged series measure different events. A batch of merges is not a burst of
-new failures. Reports continue to arrive after the initial merge batch: “known” did not stop
-customer impact. Re-run the grouping for new exports, update each ticket's unique report count,
-and route new reports by cause instead of folding them into the biggest ticket.
+new failures. Reports continued to arrive after the initial merge batch through the export cutoff: “known” did not stop
+customer impact. The later engineering update closes the incident with different outcomes for each cause.
+For future reports, re-run the grouping for new exports, update each ticket's unique report count,
+and route by cause instead of folding them into the biggest ticket. A new failure after closure
+needs fresh investigation, not an assumption that both causes received a code fix.
 
 ## Triage rule going forward
 

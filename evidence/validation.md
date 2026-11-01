@@ -30,6 +30,10 @@ Screenshots were inspected in the browser QA artifact directory /tmp/pi-playwrig
 - Development-server HMR briefly produced a hydration mismatch while rebuilding in the same work directory. The independently served production artifact passed repeated hydration and interaction checks with no console warnings.
 - The installed browser CLI uses `requests`, not the skill's older `network` command. Repeated the request check with the supported command.
 
+## Later desk update and closure correction
+
+After the first accepted submission, the Challenge page revealed an engineering update: #4471 closed 05 Oct; parser FIXED (`fix(dates): parse dd/mm for eu locales`), hint WON'T FIX (booking-v3 form retired). An initial submission with both issues closed as completed was rejected. Corrected issue #2 to not_planned and documented the different outcomes in issue comments and the signed KB source. Rebuilt the rendered site and repeated 1440×900 / 390×844 checks: no overflow, console/page errors, failed requests or HTTP errors. Inspected resolution-390.png and resolution-1440.png screenshots. Production fixes are reported from the course update, not independently verified here.
+
 ## Scope and residual risks
 
 This is triage of an exported snapshot, not validation or repair of the underlying production booking system. New reports require a new export and recomputation. The one-day descriptions remain a follow-up uncertainty, not a third verified cause. Historical accepted decision 0001 is unchanged; the new signed record supersedes it. Build dependencies have six low-severity audit findings. No authenticated browser state or course sign-in links are published.
