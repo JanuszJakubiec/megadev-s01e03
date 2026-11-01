@@ -1,0 +1,6 @@
+node_modules/
+.svelte-kit/
+evidence/*-server.log
+evidence/*-server.pid
+evidence/dev-response.html
+.playwright-cli/

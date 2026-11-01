@@ -1,0 +1,45 @@
+---
+layout: runbook
+title: '0002 · Duplicates share a verified cause'
+owner: Janusz Jakubiec and Pi
+status: accepted
+reviewed: '2026-11-01'
+signature: Janusz Jakubiec / Pi / S01E03
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## Context
+
+This record replaces [decision 0001](/kb/decisions/0001-dedupe-by-subject) and its subject-only
+rule, not its historical text. The #4471 rendered cause table disproves the assumption that one
+large ticket necessarily represents one bug. The old triage page and decision are retained as
+historical evidence; apply this record instead.
+
+## Decision
+
+Group reports by a verified cause. For the date incident, use the supplied tenant directory,
+platform date order, form version and channel through causes.ts and locales.ts. Read report
+bodies for conflicting symptoms. Do not use browser locale, intake tags, matching subject lines,
+or the existing merge target as a substitute for this check.
+
+Keep distinct causes in separate engineering issues, count each unique report ID once, and
+link the issues from the reassessment page. Unknown tenants are unplaced until investigated;
+matching unknown subjects do not establish a cause. For other products, investigate their own
+mechanisms rather than assuming the date-specific classifier applies.
+
+## Consequences
+
+Triage needs more context than a subject match. It avoids hiding independent fixes under
+“known.” On each new export, deduplicate IDs, recompute group counts, review unplaced cases,
+and inspect the received-versus-merged timeline. Resolution requires evidence of each fix,
+not merely an empty merge queue.
+
+## Check the rule against the supplied examples
+
+<DedupeExplorer />
+
+<RenderStamp {signature} />
